@@ -61,6 +61,9 @@ output['DISCOUNT'] = np.where(output['CHURN_LABEL']=='LEAVE', round((output['OVE
 #There can't be negatives discounts
 output['DISCOUNT'] = np.where(output['DISCOUNT']<0,0,output['DISCOUNT'])
 
+# If the discount is 0 and the label is LEAVE, don't call
+output['CLIENT_TO_CONTACT'] = np.where((output['DISCOUNT']==0) & (output['CHURN_LABEL']=='LEAVE'),'NOT',output['CLIENT_TO_CONTACT'])
+
 output = output[['CUSTOMER_ID', 'CHURN_PROBABILITY', 'CHURN_LABEL', 'CLIENT_TO_CONTACT', 'DISCOUNT']]
 
 output.to_csv(r'output.csv', index = None, header=True)
