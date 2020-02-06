@@ -11,7 +11,7 @@ import pandas as pd
 import numpy as np
 
 #Load stored model:
-model = pickle.load(open(r'modelGB.pkl', 'rb'))
+model = pickle.load(open(r'bestModel.pkl', 'rb'))
 
 # Load data
 data = pd.read_csv('data/validation.csv', na_values=[" "])
